@@ -20,7 +20,7 @@
             android:background="?attr/colorPrimary"
             android:titleTextColor="@android:color/white"
             android:subtitleTextColor="@android:color/white"
-            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:navigationIcon="@null"
             app:contentInsetEnd="0dp"
             app:contentInsetLeft="0dp"
             app:contentInsetRight="0dp"

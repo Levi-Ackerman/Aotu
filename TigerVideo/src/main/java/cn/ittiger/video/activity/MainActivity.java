@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar mToolbar;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
-    @BindView(R.id.nav_view)
-    NavigationView mNavigationView;
+//    @BindView(R.id.nav_view)
+//    NavigationView mNavigationView;
 
     SparseArray<Fragment> mFragmentSparseArray = new SparseArray<>();
 
@@ -51,12 +51,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(mToolbar);
         setTranslucentStatus(true);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawerLayout.setDrawerListener(toggle);
-        toggle.syncState();
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        mDrawerLayout.setDrawerListener(toggle);
+//        toggle.syncState();
 
-        mNavigationView.setNavigationItemSelectedListener(this);
+//        mNavigationView.setNavigationItemSelectedListener(this);
 
         VideoPlayerHelper.init(this);
         init();
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         BaseFragment fragment = FragmentFactory.createMainFragment(DataType.NET_EASY);
         switchFragment(fragment);
-        mNavigationView.setCheckedItem(R.id.nav_net_easy);
+//        mNavigationView.setCheckedItem(R.id.nav_net_easy);
         mFragmentSparseArray.put(R.id.nav_net_easy, fragment);
     }
 
