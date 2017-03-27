@@ -5,13 +5,22 @@ import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.jsoup.Jsoup;
+
+import rx.Observable;
+import rx.Scheduler;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
+
 /**
  * @author: laohu on 2016/8/24
  * @site: http://ittiger.cn
  */
 public class VideoPlayerHelper {
 
-    private static volatile  VideoPlayerHelper sVideoPlayerHelper;
+    private static volatile VideoPlayerHelper sVideoPlayerHelper;
     private VideoPlayerView mVideoPlayerView;
     private ViewGroup mParent;//全屏前或是小窗口前正在播放视频的ListItem
     private ViewGroup mSmallVideoPlayerContainer;//小窗口播放父容器
@@ -25,9 +34,9 @@ public class VideoPlayerHelper {
 
     public static void init(Context context) {
 
-        if(sVideoPlayerHelper == null) {
+        if (sVideoPlayerHelper == null) {
             synchronized (VideoPlayerHelper.class) {
-                if(sVideoPlayerHelper == null) {
+                if (sVideoPlayerHelper == null) {
                     sVideoPlayerHelper = new VideoPlayerHelper(context);
                 }
             }
@@ -36,7 +45,7 @@ public class VideoPlayerHelper {
 
     public void setSmallVideoPlayerContainer(ViewGroup smallVideoPlayerContainer) {
 
-        if(sVideoPlayerHelper == null) {
+        if (sVideoPlayerHelper == null) {
             throw new NullPointerException("must be invoke init() method first");
         }
         sVideoPlayerHelper.stop();
@@ -45,15 +54,15 @@ public class VideoPlayerHelper {
 
     public static VideoPlayerHelper getInstance() {
 
-        if(sVideoPlayerHelper == null) {
+        if (sVideoPlayerHelper == null) {
             throw new NullPointerException("must be invoke init() method first");
         }
         return sVideoPlayerHelper;
     }
 
-    public void play(ViewGroup parent, String videoUrl, int position) {
+    public void play(ViewGroup parent, final String videoUrl, int position) {
 
-        if(getVideoPlayState() != VideoPlayState.STOP) {
+        if (getVideoPlayState() != VideoPlayState.STOP) {
             mVideoPlayerView.onDestroy();
             mSmallVideoPlayerContainer.setVisibility(View.GONE);
         }
@@ -90,7 +99,7 @@ public class VideoPlayerHelper {
      */
     public void fullScreen(ViewGroup parent, VideoPlayerView.ExitFullScreenListener exitFullScreenListener) {
 
-        mParent = (ViewGroup)mVideoPlayerView.getParent();
+        mParent = (ViewGroup) mVideoPlayerView.getParent();
         mParent.removeView(mVideoPlayerView);
         mVideoPlayerView.setPlayScreenState(PlayScreenState.FULL_SCREEN);
         mVideoPlayerView.setExitFullScreenListener(exitFullScreenListener);
@@ -107,13 +116,13 @@ public class VideoPlayerHelper {
 
         mVideoPlayerView.setPlayScreenState(PlayScreenState.NORMAL);
         ViewGroup parent = (ViewGroup) mVideoPlayerView.getParent();
-        if(parent != null) {
+        if (parent != null) {
             parent.removeView(mVideoPlayerView);
         }
         mVideoPlayerView.setExitFullScreenListener(null);
         mParent.addView(mVideoPlayerView);
         mParent = null;
-        if(state == VideoPlayState.PLAY) {
+        if (state == VideoPlayState.PLAY) {
             mVideoPlayerView.play();
         }
     }
@@ -126,11 +135,11 @@ public class VideoPlayerHelper {
         mLastPlayPosition = mCurrPlayPosition;
         mCurrPlayPosition = -1;
         mSmallVideoPlayerContainer.setVisibility(View.VISIBLE);
-        mParent = (ViewGroup)mVideoPlayerView.getParent();
+        mParent = (ViewGroup) mVideoPlayerView.getParent();
         mParent.removeView(mVideoPlayerView);
         mVideoPlayerView.setPlayScreenState(PlayScreenState.SMALL);
         mSmallVideoPlayerContainer.addView(mVideoPlayerView, 0);
-        if(getVideoPlayState() != VideoPlayState.LOADING) {
+        if (getVideoPlayState() != VideoPlayState.LOADING) {
             mVideoPlayerView.play();
         }
     }
@@ -146,7 +155,7 @@ public class VideoPlayerHelper {
         mVideoPlayerView.setPlayScreenState(PlayScreenState.NORMAL);
         mSmallVideoPlayerContainer.removeView(mVideoPlayerView);
         mParent.addView(mVideoPlayerView);
-        if(getVideoPlayState() != VideoPlayState.LOADING) {
+        if (getVideoPlayState() != VideoPlayState.LOADING) {
             mVideoPlayerView.play();
         }
         mParent = null;
@@ -154,8 +163,8 @@ public class VideoPlayerHelper {
 
     public void stop() {
 
-        if(mVideoPlayerView.getPlayScreenState() == PlayScreenState.SMALL) {
-            if(mSmallVideoPlayerContainer != null) {
+        if (mVideoPlayerView.getPlayScreenState() == PlayScreenState.SMALL) {
+            if (mSmallVideoPlayerContainer != null) {
                 mSmallVideoPlayerContainer.setVisibility(View.GONE);
             }
         }

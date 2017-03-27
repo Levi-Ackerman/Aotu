@@ -24,7 +24,7 @@ public abstract class VideoPresenter extends MvpBasePresenter<VideoMvpView>
 
     public void refreshData(boolean pullToRefresh) {
 
-        mCurPage = 1;
+        mCurPage ++;
         request(false, pullToRefresh);
     }
 

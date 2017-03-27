@@ -1,6 +1,7 @@
 package cn.ittiger.video.http.service;
 
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -14,6 +15,6 @@ import rx.Observable;
  */
 public interface NetEasyApi {
 
-    @GET("recent/2")
-    Observable<String> getVideos(@Query("size") int size, @Query("offset") int offset);
+    @GET("recent/{page}")
+    Observable<String> getVideos(@Path("page") int curPage);
 }

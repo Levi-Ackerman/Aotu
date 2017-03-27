@@ -14,13 +14,21 @@ import cn.ittiger.video.util.DisplayManager;
 import com.bumptech.glide.Glide;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -85,12 +93,32 @@ public class VideoAdapter extends HeaderAndFooterAdapter<VideoData> {
 
         @OnClick({R.id.iv_video_item_image, R.id.iv_video_item_play_btn})
         public void onClick(View v) {
+            new AsyncTask<String, String, String>() {
+                @Override
+                protected String doInBackground(String... params) {
+                    String pageUrl = getItem(mPosition).getVideoUrl();
+                    try {
+                        Document document = Jsoup.connect(pageUrl).get();
+                        return document.getElementsByTag("video").select("source").first().attr("src");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                }
 
-            VideoPlayerHelper.getInstance().play((ViewGroup) itemView, getItem(mPosition).getVideoUrl(), mPosition);
+                @Override
+                protected void onPostExecute(String videoUrl) {
+                    if (TextUtils.isEmpty(videoUrl)) {
+                        Toast.makeText(mContext, "网络连接失败", Toast.LENGTH_SHORT).show();
+                    } else {
+                        super.onPostExecute(videoUrl);
+                        VideoPlayerHelper.getInstance().play((ViewGroup) itemView, videoUrl, mPosition);
+                    }
+                }
+            }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
 
         public void setPosition(int position) {
-
             mPosition = position;
         }
     }

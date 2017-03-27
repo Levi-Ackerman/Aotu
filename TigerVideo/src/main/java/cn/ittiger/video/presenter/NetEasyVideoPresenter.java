@@ -14,8 +14,8 @@ public class NetEasyVideoPresenter extends VideoPresenter {
     @Override
     public Observable<String> getHttpCallObservable(int curPage) {
 
-        int offset = (curPage - 1) * PAGE_SIZE;
-        return RetrofitFactory.getNetEasyVideoService().getVideos(PAGE_SIZE, offset);
+//        int offset = (curPage - 1) * PAGE_SIZE;
+        return RetrofitFactory.getNetEasyVideoService().getVideos(curPage+1);
     }
 
     @Override
