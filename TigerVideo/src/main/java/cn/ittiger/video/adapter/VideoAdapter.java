@@ -3,7 +3,7 @@ package cn.ittiger.video.adapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.ittiger.video.R;
+import com.woyou.R;
 import cn.ittiger.video.bean.VideoData;
 import cn.ittiger.video.ui.recycler.HeaderAndFooterAdapter;
 import cn.ittiger.video.ui.recycler.ViewHolder;

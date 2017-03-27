@@ -3,7 +3,7 @@ package cn.ittiger.video.player;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.ittiger.video.R;
+import com.woyou.R;
 
 import android.app.Activity;
 import android.content.Context;

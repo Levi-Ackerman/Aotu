@@ -2,7 +2,7 @@ package cn.ittiger.video.fragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.ittiger.video.R;
+import com.woyou.R;
 import cn.ittiger.video.adapter.TabAdapter;
 import cn.ittiger.video.bean.VideoTabData;
 import cn.ittiger.video.mvpview.VideoTabMvpView;

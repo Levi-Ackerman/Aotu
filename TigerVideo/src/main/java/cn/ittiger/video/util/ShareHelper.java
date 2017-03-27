@@ -1,12 +1,12 @@
 package cn.ittiger.video.util;
 
-import cn.ittiger.video.R;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+
+import com.woyou.R;
 
 import java.io.File;
 

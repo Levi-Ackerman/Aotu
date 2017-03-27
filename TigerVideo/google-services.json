@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "198025731957",
+    "firebase_url": "https://wonderhub-19113.firebaseio.com",
+    "project_id": "wonderhub-19113",
+    "storage_bucket": "wonderhub-19113.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198025731957:android:dc4a1787d02089a8",
+        "android_client_info": {
+          "package_name": "com.woyou"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198025731957-7ri78sfishca0j6o17o8itcgof8ofrpg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKhrwGdXXNnrT-mzhQ5BCUCUdqCwhV9iU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,7 +2,6 @@ package cn.ittiger.video.activity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.ittiger.video.R;
 import cn.ittiger.video.app.TigerApplication;
 import cn.ittiger.video.fragment.BaseFragment;
 import cn.ittiger.video.factory.FragmentFactory;
@@ -13,6 +12,7 @@ import cn.ittiger.video.util.ShareHelper;
 import cn.ittiger.video.util.UIUtil;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+import com.woyou.R;
 
 import android.annotation.TargetApi;
 import android.content.Intent;

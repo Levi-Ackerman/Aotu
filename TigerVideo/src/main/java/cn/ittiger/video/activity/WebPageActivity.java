@@ -2,7 +2,7 @@ package cn.ittiger.video.activity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.ittiger.video.R;
+import com.woyou.R;
 import cn.ittiger.video.util.UIUtil;
 
 import android.graphics.Bitmap;

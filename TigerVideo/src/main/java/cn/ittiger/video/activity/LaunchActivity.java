@@ -1,15 +1,16 @@
 package cn.ittiger.video.activity;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import cn.ittiger.video.R;
-
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+
+import com.woyou.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class LaunchActivity extends AppCompatActivity {
     @BindView(R.id.iv_launch)

@@ -2,7 +2,7 @@ package cn.ittiger.video.app;
 
 import butterknife.ButterKnife;
 import cn.ittiger.database.SQLiteDBConfig;
-import cn.ittiger.video.R;
+import com.woyou.R;
 import cn.ittiger.video.util.ApplicationHelper;
 import cn.ittiger.video.util.CrashHandler;
 

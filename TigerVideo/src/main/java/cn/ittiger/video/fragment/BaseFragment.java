@@ -1,6 +1,6 @@
 package cn.ittiger.video.fragment;
 
-import cn.ittiger.video.R;
+import com.woyou.R;
 import cn.ittiger.video.ui.LoadingView;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;

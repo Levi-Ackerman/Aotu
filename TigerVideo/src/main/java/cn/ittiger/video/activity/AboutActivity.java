@@ -3,7 +3,6 @@ package cn.ittiger.video.activity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.ittiger.video.R;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -17,6 +16,8 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
+import com.woyou.R;
 
 /**
  * 关于

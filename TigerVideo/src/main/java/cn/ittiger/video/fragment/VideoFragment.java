@@ -3,7 +3,10 @@ package cn.ittiger.video.fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.ittiger.video.R;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.woyou.R;
 import cn.ittiger.video.adapter.VideoAdapter;
 import cn.ittiger.video.bean.VideoData;
 import cn.ittiger.video.mvpview.VideoMvpView;
@@ -39,6 +42,9 @@ public abstract class VideoFragment extends
     @BindView(R.id.small_video_player_container)
     RelativeLayout mSmallVideoPlayerContainer;
 
+    @BindView(R.id.adView)
+    AdView mAdView;
+
     private View mFooterView;
     private VideoAdapter mVideoAdapter;
     private boolean mIsFirstLoad = true;
@@ -48,15 +54,18 @@ public abstract class VideoFragment extends
 
         View view = inflater.inflate(R.layout.fragment_video, null);
         ButterKnife.bind(this, view);
-
         mRecyclerView.addItemDecoration(new SpacesItemDecoration(getResources().getDimensionPixelSize(R.dimen.d_10)));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.setOnLoadMoreListener(this);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
                 loadData(true);
+                AdRequest adRequest = new AdRequest.Builder().build();
+                mAdView.loadAd(adRequest);
             }
         });
 

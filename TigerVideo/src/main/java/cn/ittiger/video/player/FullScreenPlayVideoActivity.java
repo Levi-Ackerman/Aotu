@@ -1,11 +1,12 @@
 package cn.ittiger.video.player;
 
-import cn.ittiger.video.R;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ViewGroup;
+
+import com.woyou.R;
 
 /**
  * @author: laohu on 2016/8/31
