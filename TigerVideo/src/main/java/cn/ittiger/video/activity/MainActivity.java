@@ -11,6 +11,9 @@ import cn.ittiger.video.player.VideoPlayerHelper;
 import cn.ittiger.video.util.ShareHelper;
 import cn.ittiger.video.util.UIUtil;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.woyou.R;
 
@@ -33,6 +36,7 @@ import android.view.WindowManager;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private InterstitialAd mInterstitialAd;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.drawer_layout)
@@ -48,6 +52,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        requestNewInterstitial();
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
         setSupportActionBar(mToolbar);
         setTranslucentStatus(true);
 
@@ -81,7 +92,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tintManager.setStatusBarTintEnabled(true);
         tintManager.setNavigationBarTintEnabled(false);
     }
+    private void requestNewInterstitial() {
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("EEDEC80B63436CD9FD46D83A17061FAC")
+                .build();
 
+        mInterstitialAd.loadAd(adRequest);
+    }
     private void init() {
 
         BaseFragment fragment = FragmentFactory.createMainFragment(DataType.NET_EASY);

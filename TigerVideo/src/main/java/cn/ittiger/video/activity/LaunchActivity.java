@@ -7,6 +7,9 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.woyou.R;
 
 import butterknife.BindView;
@@ -24,7 +27,7 @@ public class LaunchActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         AlphaAnimation animation = new AlphaAnimation(0.3f, 1f);
-        animation.setDuration(2000);
+        animation.setDuration(0);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
